@@ -105,7 +105,7 @@ int main(int argc, char** argv) {
 	}
 	ybp_init_event(evbuf);
 	if (starting_offset >= 0) {
-		off64_t offset = ybp_nearest_offset(bp, starting_offset);
+		off_t offset = ybp_nearest_offset(bp, starting_offset);
 		if (offset == -2) {
 			fprintf(stderr, "Unable to find anything after offset %ld\n", starting_offset);
 			return 1;
@@ -119,7 +119,7 @@ int main(int argc, char** argv) {
 		}
 	}
 	if (starting_time >= 0) {
-		off64_t offset = ybp_nearest_time(bp, starting_time);
+		off_t offset = ybp_nearest_time(bp, starting_time);
 		if (offset == -2) {
 			fprintf(stderr, "Unable to find anything after time %ld\n", starting_time);
 			return 1;
