@@ -9,6 +9,7 @@
 
 #define _XOPEN_SOURCE 600
 #define _GNU_SOURCE
+#define _FILE_OFFSET_BITS 64
 
 #include <fcntl.h>
 #include <stdbool.h>
@@ -90,7 +91,7 @@ int main(int argc, char** argv) {
 		usage();
 		return 2;
 	}
-	if ((fd = open(argv[optind], O_RDONLY|O_LARGEFILE)) <= 0) {
+	if ((fd = open(argv[optind], O_RDONLY)) <= 0) {
 		perror("Error opening file");
 		return 1;
 	}
