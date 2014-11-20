@@ -7,6 +7,15 @@ prefix := /usr
 CFLAGS += -Wall -ggdb -Wextra --std=c99 -pedantic
 LDFLAGS += -L.
 
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+	SONAME := -soname
+endif
+ifeq ($(UNAME_S),Darwin)
+	SONAME := -install_name
+endif
+
+
 # Enable for debugging
 debug: CFLAGS += -DDEBUG
 debug: all
@@ -20,7 +29,7 @@ libybinlogp.so: libybinlogp.so.1
 	ln -fs $< $@
 
 libybinlogp.so.1: libybinlogp.o
-	gcc $(CFLAGS) $(LDFLAGS) -shared -Wl,-soname,$@ -o $@ $^
+	gcc $(CFLAGS) $(LDFLAGS) -shared -Wl,$(SONAME),$@ -o $@ $^
 
 libybinlogp.o: libybinlogp.c ybinlogp-private.h
 	gcc $(CFLAGS) $(LDFLAGS) -c -fPIC -o $@ $<
