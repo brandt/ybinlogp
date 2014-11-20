@@ -502,7 +502,7 @@ void ybp_dispose_safe_re(struct ybp_rotate_event_safe* s)
 }
 
 struct ybp_rotate_event_safe* ybp_event_to_safe_re(struct ybp_event* restrict e) {
-	struct ybp_rotate_event_safe* s;
+	struct ybp_rotate_event_safe* s = NULL;
 	if (e->type_code != ROTATE_EVENT) {
 		fprintf(stderr, "Illegal conversion attempted: %d -> %d\n", e->type_code, ROTATE_EVENT);
 	} else {
@@ -517,7 +517,7 @@ struct ybp_rotate_event_safe* ybp_event_to_safe_re(struct ybp_event* restrict e)
 }
 
 struct ybp_xid_event* ybp_event_to_safe_xe(struct ybp_event* restrict e) {
-	struct ybp_xid_event* s;
+	struct ybp_xid_event* s = NULL;
 	if (e->type_code != XID_EVENT) {
 		fprintf(stderr, "Illegal conversion attempted: %d -> %d\n", e->type_code, ROTATE_EVENT);
 	} else {
